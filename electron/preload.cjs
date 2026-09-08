@@ -1,0 +1,25 @@
+const { contextBridge, ipcRenderer } = require("electron");
+
+contextBridge.exposeInMainWorld("pflDesktop", {
+    authenticate: (credentials) => ipcRenderer.invoke("pfl:authenticate", credentials),
+    getUsers: () => ipcRenderer.invoke("pfl:get-users"),
+    setUsers: (users) => ipcRenderer.invoke("pfl:set-users", users),
+    printOrder: (payload) => ipcRenderer.invoke("pfl:print-order", payload),
+    getPrinters: () => ipcRenderer.invoke("pfl:get-printers"),
+    getPrinterSettings: () => ipcRenderer.invoke("pfl:get-printer-settings"),
+    setPrinterSettings: (settings) => ipcRenderer.invoke("pfl:set-printer-settings", settings),
+    exportSalesReport: (payload) => ipcRenderer.invoke("pfl:export-sales-report", payload),
+    getCatalog: () => ipcRenderer.invoke("pfl:get-catalog"),
+    saveCatalog: (catalog) => ipcRenderer.invoke("pfl:save-catalog", catalog),
+    getTables: () => ipcRenderer.invoke("pfl:get-tables"),
+    saveTables: (tables) => ipcRenderer.invoke("pfl:save-tables", tables),
+    getOrders: () => ipcRenderer.invoke("pfl:get-orders"),
+    saveOrders: (orders) => ipcRenderer.invoke("pfl:save-orders", orders),
+    prepareCleanWindowsData: () => ipcRenderer.invoke("pfl:prepare-clean-windows-data"),
+    openDbViewerWindow: () => ipcRenderer.invoke("pfl:open-db-viewer-window"),
+    getDbTables: () => ipcRenderer.invoke("pfl:get-db-tables"),
+    getDbTable: (tableName) => ipcRenderer.invoke("pfl:get-db-table", tableName),
+    insertDbRow: ({ tableName, row }) => ipcRenderer.invoke("pfl:insert-db-row", { tableName, row }),
+    updateDbRow: ({ tableName, idColumn, idValue, row }) => ipcRenderer.invoke("pfl:update-db-row", { tableName, idColumn, idValue, row }),
+    deleteDbRow: ({ tableName, idColumn, idValue }) => ipcRenderer.invoke("pfl:delete-db-row", { tableName, idColumn, idValue }),
+});
