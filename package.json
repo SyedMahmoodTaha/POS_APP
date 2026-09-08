@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:win": "electron-builder --win -p never",
     "desktop": "npm run build && electron .",
     "db": "npm run build && electron . --db-viewer",
     "build:mac": "npm run build && electron-builder --mac dir --arm64 --config.directories.output=../LPFAP/mac",
